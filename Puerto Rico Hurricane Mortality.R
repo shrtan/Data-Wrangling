@@ -7,7 +7,7 @@ system("cmd.exe", input = paste("start", fn))
 # create a tidy dataset with each row representing one observation. 
 # The variables in this dataset will be year, month, day and deaths.
 
-install.packages("pdftools")
+#install.packages("pdftools")
 library("pdftools")
 #Using the pdftools package to read in fn using the pdf_text() function
 txt <- pdf_text(fn)
@@ -105,7 +105,7 @@ tab
 #Question 14: Plot of deaths versus day with color to denote year
 tab_no2018 <- tab[tab$year != 2018,]
 library(ggplot2)
-tab_no2018 %>% ggplot(mapping = aes(Day, deaths, color = year, group = year)) + 
+tab %>% filter(year != 2018) %>% ggplot(mapping = aes(Day, deaths, color = year, group = year)) + 
   geom_point() +
   geom_line() + 
   geom_vline(xintercept = 20)
